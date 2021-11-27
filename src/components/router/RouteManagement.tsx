@@ -5,12 +5,12 @@ import Home from "../../page-routes/Home/Home";
 const RouteManagement: React.FC = () => {
     return (
         <BrowserRouter>
-          <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-      </BrowserRouter>
+            <Switch>
+                <Route path="/">
+                    <Home />
+                </Route>
+            </Switch>
+        </BrowserRouter>
     )
 }
 

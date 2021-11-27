@@ -1,5 +1,9 @@
 .searchBar {
-    position: relative;
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.searchBox {
+    width: 50%;
 }

@@ -1,4 +1,4 @@
  .searchBox {
-    position: absolute;
-    min-width: 50%;
-}
+     min-width: 100%;
+     min-height: 35px;
+ }
