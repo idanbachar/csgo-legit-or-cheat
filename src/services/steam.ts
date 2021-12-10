@@ -1,3 +1,7 @@
+import { IGame } from "../components/games/IGame";
+import { IFriend } from "../components/player/IFriend";
+import { IPlayer } from "../components/player/IPlayer";
+
 const appId = 730;
 
 export const getSteamId = (vanityurl: string) => new Promise<string>((resolve, reject) => {
@@ -10,7 +14,7 @@ export const getSteamId = (vanityurl: string) => new Promise<string>((resolve, r
     })
 })
 
-export const getUser = (steamUrl: string) => new Promise<any>((resolve, reject) => {
+export const getUser = (steamUrl: string) => new Promise<IPlayer>((resolve, reject) => {
     const isIdAvailable = steamUrl.split("/")[1] !== "id";
 
     if (!isIdAvailable) {
@@ -27,7 +31,7 @@ export const getUser = (steamUrl: string) => new Promise<any>((resolve, reject) 
     }
 })
 
-export const getProfile = (steamId: string) => new Promise((resolve, reject) => {
+export const getProfile = (steamId: string) => new Promise<IPlayer>((resolve, reject) => {
     fetch(`/profile/${steamId}`).then((res) => {
         res.json().then((data) => {
             return resolve(data.response.players[0]);
@@ -37,7 +41,7 @@ export const getProfile = (steamId: string) => new Promise((resolve, reject) => 
     })
 })
 
-export const getFriends = (steamId: string) => new Promise((resolve, reject) => {
+export const getFriends = (steamId: string) => new Promise<IFriend[]>((resolve, reject) => {
     fetch(`/friendList/${steamId}`).then((res) => {
         res.json().then((data) => {
             return resolve(data.friendslist.friends);
@@ -47,7 +51,7 @@ export const getFriends = (steamId: string) => new Promise((resolve, reject) => 
     })
 })
 
-export const getGames = (steamId: string) => new Promise((resolve, reject) => {
+export const getGames = (steamId: string) => new Promise<IGame[]>((resolve, reject) => {
     fetch(`/games/${steamId}`).then((res) => {
         res.json().then((data) => {
             return resolve(data.response.games);
