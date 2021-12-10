@@ -1,16 +1,18 @@
 import styles from './home.module.css';
 import SearchBox from "../../components/search-box/SearchBox";
 import { useState } from 'react';
-import { getUser } from '../../services/steam';
+import { getGames, getUser } from '../../services/steam';
 import { IPlayer } from '../../components/player/IPlayer';
 import Player from '../../components/player/Player';
 
 const Home: React.FC = () => {
-    const [player, setPlayer] = useState<IPlayer>()
+    const [player, setPlayer] = useState<IPlayer>();
 
     const handleSearch = async (steamUrl: string) => {
-        const p: IPlayer = await getUser(steamUrl);
-        setPlayer(p);
+        const user = await getUser(steamUrl);
+        const games: any = await getGames(user.steamid);
+        const steamPlayer = { ...user, games }
+        setPlayer(steamPlayer);
     }
 
     return (
@@ -20,15 +22,8 @@ const Home: React.FC = () => {
                 <SearchBox
                     defaultValue={"https://steamcommunity.com/id/Assassin1BK"}
                     searchButton={handleSearch} />
-                {player &&
-                    <Player
-                        steamid={player.steamid}
-                        avatarfull={player.avatarfull}
-                        personaname={player.personaname}
-                        realname={player.realname}
-                        profileurl={player.profileurl}
-                    />
-                }
+
+                {player && <Player data={player} />}
             </div>
         </div>
     )

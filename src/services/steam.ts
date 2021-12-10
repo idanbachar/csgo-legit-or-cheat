@@ -50,7 +50,7 @@ export const getFriends = (steamId: string) => new Promise((resolve, reject) => 
 export const getGames = (steamId: string) => new Promise((resolve, reject) => {
     fetch(`/games/${steamId}`).then((res) => {
         res.json().then((data) => {
-            return resolve(data);
+            return resolve(data.response.games);
         })
     }).catch((error) => {
         reject(error);

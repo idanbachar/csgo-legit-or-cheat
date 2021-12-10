@@ -1,26 +1,21 @@
-import React from "react";
+import Games from "../games/Games";
 import { IPlayer } from "./IPlayer";
 import styles from "./player.module.css";
 
-const Player: React.FC<IPlayer> = ({
-    steamid,
-    realname,
-    avatarfull,
-    personaname,
-    profileurl
-}) => {
+const Player = ({ data }: { data: IPlayer }) => {
     return (
         <div className={styles.container}>
             <div>
-                <img src={avatarfull}
+                <img src={data.avatarfull}
                     className={styles.profileImg}
                 />
             </div>
             <div className={styles.name}>
-                <a href={profileurl} target="_blank">
-                    <strong>{personaname} ({realname})</strong>
+                <a href={data.profileurl} target="_blank">
+                    <strong>{data.personaname} ({data.realname})</strong>
                 </a>
             </div>
+            {data.games && <Games games={data.games} />}
         </div>
     )
 }
