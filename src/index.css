@@ -11,6 +11,15 @@ body {
   color:white;
 }
 
+a{
+  text-decoration: none;
+}
+
+a:visited{
+  color: aliceblue;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,12 +1,14 @@
 .container {
+    justify-content: center;
     display: flex;
-    position: relative;
+    position: absolute;
+    padding: 20px 0px;
 }
 
-.profile {
-    width: 120px;
+.name{
+    font-size: 25px;
 }
 
-.name {
-
+.profileImg {
+    width: 75%;
 }

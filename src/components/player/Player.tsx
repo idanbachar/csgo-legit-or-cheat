@@ -13,7 +13,7 @@ const Player: React.FC<IPlayer> = ({
         <div className={styles.container}>
             <div>
                 <img src={avatarfull}
-                    className={styles.profile}
+                    className={styles.profileImg}
                 />
             </div>
             <div className={styles.name}>

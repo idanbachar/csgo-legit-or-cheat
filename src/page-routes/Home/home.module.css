@@ -1,10 +1,13 @@
 .home {
     display: flex;
-    flex-direction: column;
-    background-color: slategrey;
     justify-content: center;
-    right: 25%;
-    left: 25%;
+    flex-direction: column;
+}
+
+.container {
     width: 50%;
-    position: absolute;
+    left: 25%;
+    right: 25%;
+    background-color: red;
+    position: relative;
 }

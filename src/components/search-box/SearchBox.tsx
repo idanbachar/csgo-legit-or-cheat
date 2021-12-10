@@ -19,23 +19,22 @@ const SearchBox: React.FC<Props> = ({ defaultValue, searchButton }) => {
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <input
                 value={inputValue}
                 className={styles.searchBox}
                 type={"text"}
-                placeholder={"Enter steam user url..."}
+                placeholder={"ENTER STEAM URL..."}
                 onChange={(e) => setInputValue(e.target.value)}
             />
             <button
                 onClick={() => {
-                    if (isValid()) {
+                    if (isValid())
                         searchButton(inputValue.replace("https://", ""))
-                    }
                 }}>
-                Search
+                Check!
             </button>
-        </>
+        </div>
     )
 }
 
