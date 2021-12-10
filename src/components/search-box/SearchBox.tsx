@@ -1,12 +1,26 @@
 import { useState } from 'react';
 import styles from './search-box.module.css'
 
-interface Propable {
-    onClick: (userId: string) => void;
+interface Props {
+    searchButton: (userId: string) => void;
 }
 
-const SearchBox: React.FC<Propable> = ({ onClick }) => {
-    const [inputValue, setInputValue] = useState("");
+const SearchBox: React.FC<Props> = ({ searchButton }) => {
+    const [inputValue, setInputValue] = useState<string>("");
+
+    const isValid = () => {
+
+        let url = inputValue;
+        url = url.replace("https://", "");
+        if (!url) return false;
+
+        const splitedUrl = url.split("/");
+
+        if (splitedUrl[0] !== "steamcommunity.com") return false;
+        if (splitedUrl[1] !== "id" && splitedUrl[2] !== "profiles") return false;
+
+        return true;
+    }
 
     return (
         <>
@@ -17,7 +31,11 @@ const SearchBox: React.FC<Propable> = ({ onClick }) => {
                 onChange={(e) => setInputValue(e.target.value)}
             />
             <button
-                onClick={() => onClick(inputValue)}>
+                onClick={() => {
+                    if (isValid()) {
+                        searchButton(inputValue)
+                    }
+                }}>
                 Search
             </button>
         </>
