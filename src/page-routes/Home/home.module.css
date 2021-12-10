@@ -1,9 +1,10 @@
-.searchBar {
+.home {
     display: flex;
+    flex-direction: column;
+    background-color: slategrey;
     justify-content: center;
-    position: relative;
-}
-
-.searchBox {
+    right: 25%;
+    left: 25%;
     width: 50%;
+    position: absolute;
 }

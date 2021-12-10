@@ -10,18 +10,22 @@ export const getSteamId = (vanityurl: string) => new Promise<string>((resolve, r
     })
 })
 
-export const getUser = (steamUrl: string) => new Promise((resolve, reject) => {
-    const isIdAvailable = steamUrl.split("/")[2] === "id";
-    const vanityurl = steamUrl.split("/")[3];
+export const getUser = (steamUrl: string) => new Promise<any>((resolve, reject) => {
+    const isIdAvailable = steamUrl.split("/")[1] !== "id";
+
     if (!isIdAvailable) {
+        const vanityurl = steamUrl.split("/")[2];
         getSteamId(vanityurl).then((steamid) => {
             getProfile(steamid).then((profile) => {
                 return resolve(profile);
             })
         })
+    } else {
+        getProfile(steamUrl.split("/")[2]).then((profile) => {
+            return resolve(profile);
+        })
     }
 })
-
 
 export const getProfile = (steamId: string) => new Promise((resolve, reject) => {
     fetch(`/profile/${steamId}`).then((res) => {
@@ -32,7 +36,6 @@ export const getProfile = (steamId: string) => new Promise((resolve, reject) => 
         reject(error);
     })
 })
-
 
 export const getFriends = (steamId: string) => new Promise((resolve, reject) => {
     fetch(`/friendList/${steamId}`).then((res) => {

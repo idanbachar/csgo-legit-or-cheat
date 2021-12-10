@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    position: relative;
+}
+
+.profile {
+    width: 120px;
+}
+
+.name {
+
+}
