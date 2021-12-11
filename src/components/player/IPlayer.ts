@@ -19,8 +19,8 @@ export interface IPlayer {
     realname: string;
     steamid: string;
     timecreated: number;
-    games: IGame[];
-    friendslist: IFriend[];
-    csgo_stats: ICSGO;
-    vac: IVac;
+    games: IGame[] | null;
+    friendslist: IFriend[] | null;
+    csgo_stats: ICSGO | null;
+    vac: IVac | null;
 }

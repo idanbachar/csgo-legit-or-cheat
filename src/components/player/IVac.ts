@@ -3,7 +3,7 @@ export interface IVac {
     CommunityBanned: boolean;
     VACBanned: boolean;
     NumberOfVACBans: number;
-    DaysSinceLastBan: number;
     NumberOfGameBans: number;
+    DaysSinceLastBan: number;
     EconomyBan: string;
 }

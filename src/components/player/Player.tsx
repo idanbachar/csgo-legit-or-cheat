@@ -1,19 +1,12 @@
+import { checkAccountAge, checkFriendsCount, checkGamesCount } from "../../services/cheat-indication/CheatIndication";
 import CSGOStats from "../csgo-stats/CSGOStats";
-import Games from "../games/Games";
 import { IPlayer } from "./IPlayer";
 import styles from "./player.module.css";
 
 const Player = ({ data }: { data: IPlayer }) => {
-
-    const total_games = data.games.length;
-    const total_friends = data.friendslist.length;
-    const account_created_year = new Date(data.timecreated * 1000).getFullYear();
-    const account_age = new Date().getFullYear() - account_created_year;
-    const total_vac_bans = data.vac.NumberOfVACBans;
-    const total_game_bans = data.vac.NumberOfGameBans;
-    const isVacBanned = data.vac.VACBanned;
-
-    const vac_status = isVacBanned ? (`Banned (${total_vac_bans} VAC bans`) : "Legit";
+    const isGamesCountSus = checkGamesCount(data?.games);
+    const isFriendsCountSus = checkFriendsCount(data?.friendslist);
+    const isAccountAgeSus = checkAccountAge(new Date(data.timecreated * 1000));
 
     return (
         <>
@@ -23,22 +16,62 @@ const Player = ({ data }: { data: IPlayer }) => {
                 </div>
                 <div className={styles.profileInfo}>
                     <div className={styles.name}>
-                        <a href={data.profileurl} target="_blank">
-                            <strong>{data.loccountrycode} | {data.personaname}, {data.realname}</strong>
-                        </a>
+                        <strong>
+                            <a href={data.profileurl} target="_blank">
+                                {data.loccountrycode} | {data.personaname} {data.realname ? `(${data.realname})` : ""}
+                            </a>
+                        </strong>
                     </div>
                     <h3>Profile info</h3>
-                    <div>Owned Games: {total_games}</div>
-                    <div>Total Friends: {total_friends}</div>
-                    <div>Member Since: {account_created_year} ({account_age} Years)</div>
-                    <div>VAC Status: {vac_status}</div>
+                    <div>
+                        Owned Games:
+                        <span
+                            className={isGamesCountSus ?
+                                styles.suspicious :
+                                styles.normal
+                            }>
+                            {data.games?.length}
+                        </span>
+                    </div>
+                    <div>
+                        Total Friends:
+                        <span
+                            className={isFriendsCountSus ?
+                                styles.suspicious :
+                                styles.normal
+                            }>
+                            {data.friendslist?.length}
+                        </span>
+                    </div>
+                    <div>Member Since:
+                        <span
+                            className={isAccountAgeSus ?
+                                styles.suspicous :
+                                styles.normal
+                            }>
+                            {new Date(data.timecreated * 1000).getFullYear()}
+                        </span>
+                    </div>
+                    <div>VAC Status:
+                        <span
+                            className={data.vac ?
+                                (data.vac.VACBanned ? styles.suspicious : styles.normal) : ""
+                            }>
+                            {data.vac && data.vac.VACBanned ? " Banned" : " Legit"}
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className={styles.csgoStats}>
-                <CSGOStats
-                    achievements={data.csgo_stats.achievements}
-                    stats={data.csgo_stats.stats}
-                />
+                <hr />
+                {data.csgo_stats ?
+                    <CSGOStats
+                        achievements={data.csgo_stats.achievements}
+                        stats={data.csgo_stats.stats}
+                    /> :
+                    <div>
+                        <h2 style={{ color: "red" }}>CS:GO Stats are not available for this user.</h2>
+                    </div>}
             </div>
         </>
     )

@@ -3,7 +3,7 @@ import { IStat } from "./stat/IStat";
 import styles from "./csgo-stats.module.css";
 import Stat from "./stat/Stat";
 
-const CSGOStats = ({ achievements, stats }: { achievements: IAchievement[], stats: IStat[] }) => {
+const CSGOStats = ({ achievements, stats }: { achievements?: IAchievement[], stats?: IStat[] }) => {
 
     const relevantStats = [
         "total_kills",
@@ -17,17 +17,17 @@ const CSGOStats = ({ achievements, stats }: { achievements: IAchievement[], stat
         "last_match_mvps",
         "total_mvps"
     ];
-    stats = stats.filter(stat => relevantStats.includes(stat.name));
+
+    stats = stats?.filter(stat => relevantStats.includes(stat.name));
 
     return (
         <div className={styles.column}>
             <div className={styles.title}>
-                <hr />
                 <h2>CS:GO Stats:</h2>
             </div>
             <div >
                 <div>
-                    {stats.map((stat, key) =>
+                    {stats && stats.map((stat, key) =>
                         <Stat
                             key={key}
                             stat={stat}

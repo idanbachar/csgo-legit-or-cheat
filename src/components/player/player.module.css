@@ -8,5 +8,14 @@
 }
 
 .profileImg {
-    width: 75%;
+    padding-right: 25px;
+    width: 80%;
+}
+
+.suspicious {
+    color: red;
+}
+
+.normal {
+    color: green;
 }

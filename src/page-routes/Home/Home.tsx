@@ -1,7 +1,7 @@
 import styles from './home.module.css';
 import SearchBox from "../../components/search-box/SearchBox";
 import { useState } from 'react';
-import { getCSGOStats, getFriends, getGames, getUser, getVac } from '../../services/steam';
+import { getCSGOStats, getFriends, getGames, getUser, getVac } from '../../services/steam/steam';
 import { IPlayer } from '../../components/player/IPlayer';
 import Player from '../../components/player/Player';
 
