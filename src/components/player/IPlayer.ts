@@ -1,3 +1,4 @@
+import { ICSGO } from "../games/ICSGO";
 import { IGame } from "../games/IGame";
 import { IFriend } from "./IFriend";
 
@@ -17,6 +18,7 @@ export interface IPlayer {
     realname: string;
     steamid: string;
     timecreated: number;
-    games?: IGame[],
-    friendslist?: IFriend[]
+    games: IGame[];
+    friendslist: IFriend[];
+    csgo_stats: ICSGO;
 }

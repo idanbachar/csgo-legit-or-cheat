@@ -1,3 +1,4 @@
+import { ICSGO } from "../components/games/ICSGO";
 import { IGame } from "../components/games/IGame";
 import { IFriend } from "../components/player/IFriend";
 import { IPlayer } from "../components/player/IPlayer";
@@ -61,10 +62,10 @@ export const getGames = (steamId: string) => new Promise<IGame[]>((resolve, reje
     })
 })
 
-export const getGameStats = (steamId: string) => new Promise((resolve, reject) => {
+export const getCSGOStats = (steamId: string) => new Promise<ICSGO>((resolve, reject) => {
     fetch(`/gameStats/${steamId}/${appId}`).then((res) => {
         res.json().then((data) => {
-            return resolve(data);
+            return resolve(data.playerstats);
         })
     }).catch((error) => {
         reject(error);

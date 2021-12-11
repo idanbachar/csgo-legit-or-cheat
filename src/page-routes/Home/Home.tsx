@@ -1,7 +1,7 @@
 import styles from './home.module.css';
 import SearchBox from "../../components/search-box/SearchBox";
 import { useState } from 'react';
-import { getFriends, getGames, getUser } from '../../services/steam';
+import { getCSGOStats, getFriends, getGames, getUser } from '../../services/steam';
 import { IPlayer } from '../../components/player/IPlayer';
 import Player from '../../components/player/Player';
 
@@ -12,8 +12,9 @@ const Home: React.FC = () => {
         const user = await getUser(steamUrl);
         const games = await getGames(user.steamid);
         const friendslist = await getFriends(user.steamid);
+        const csgo_stats = await getCSGOStats(user.steamid);
 
-        const steamPlayer = { ...user, games, friendslist }
+        const steamPlayer = { ...user, games, friendslist, csgo_stats }
         setPlayer(steamPlayer);
     }
 

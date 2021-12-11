@@ -19,12 +19,13 @@ const Player = ({ data }: { data: IPlayer }) => {
                 </div>
                 <div>Owned Games: {data.games?.length}</div>
                 <div>Total Friends: {data.friendslist?.length}</div>
-                <div>Member since: {new Date(data.timecreated * 1000).toISOString().split('T')[0]}</div>
+                <div>Member Since: {new Date(data.timecreated * 1000).toISOString().split('T')[0]}</div>
+                <div>CS:GO Total Time Played: {data.games.find(game => game.appid === 730)!.playtime_forever / 60}</div>
+                <div>CS:GO Total K/D: {data.csgo_stats.stats[0].value} / {data.csgo_stats.stats[1].value}</div>
             </div>
-            {data.games &&
-                <Games
-                    visible={false}
-                    games={data.games} />}
+            <Games
+                visible={false}
+                games={data.games} />
         </div>
     )
 }
