@@ -1,13 +1,12 @@
-.home {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
     width: 50%;
     left: 25%;
-    right: 25%;
+}
+
+.title {
     background-color: #720f0f;
-    position: relative;
 }

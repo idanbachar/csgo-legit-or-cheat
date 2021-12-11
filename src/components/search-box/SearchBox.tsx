@@ -22,7 +22,7 @@ const SearchBox: React.FC<Props> = ({ defaultValue, searchButton }) => {
         <div className={styles.container}>
             <input
                 value={inputValue}
-                className={styles.searchBox}
+                className={styles.input}
                 type={"text"}
                 placeholder={"ENTER STEAM URL..."}
                 onChange={(e) => setInputValue(e.target.value)}

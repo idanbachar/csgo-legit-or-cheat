@@ -1,7 +1,5 @@
 .container {
-    justify-content: center;
     display: flex;
-    position: absolute;
     padding: 20px 0px;
 }
 
@@ -11,4 +9,7 @@
 
 .profileImg {
     width: 75%;
+}
+
+.csgoStats {
 }

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { getCSGOStats, getFriends, getGames, getUser } from '../../services/steam';
 import { IPlayer } from '../../components/player/IPlayer';
 import Player from '../../components/player/Player';
+import CSGOStats from '../../components/csgo-stats/CSGOStats';
 
 const Home: React.FC = () => {
     const [player, setPlayer] = useState<IPlayer>();
@@ -19,13 +20,17 @@ const Home: React.FC = () => {
     }
 
     return (
-        <div className={styles.home}>
-            <div className={styles.container}>
+        <div className={styles.container}>
+            <div className={styles.title}>
                 <h1>CS:GO - Legit? or Cheat?</h1>
+            </div>
+            <div className={styles.searchBox}>
                 <SearchBox
                     defaultValue={"https://steamcommunity.com/id/Assassin1BK"}
                     searchButton={handleSearch}
                 />
+            </div>
+            <div className={styles.player}>
                 {player && <Player data={player} />}
             </div>
         </div>

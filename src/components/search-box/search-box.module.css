@@ -1,10 +1,10 @@
- .searchBox {
-     height: 50px;
-     width: 100%;
-     font-size: 18px;
- }
+.container {
+    display: flex;
+    justify-content: center;
+}
 
- .container{
-     display: flex;
-     justify-content: center;
- }
+.input {
+    height: 50px;
+    width: 100%;
+    font-size: 18px;
+}

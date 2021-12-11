@@ -1,0 +1,11 @@
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+}
+
+.statsWrapper {
+    display: flex;
+}
