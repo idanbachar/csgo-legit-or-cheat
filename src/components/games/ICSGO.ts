@@ -1,5 +1,5 @@
-import { IAchievement } from "../csgo-stats/IAchievement";
-import { IStat } from "../csgo-stats/IStat";
+import { IAchievement } from "../csgo-stats/achievement/IAchievement";
+import { IStat } from "../csgo-stats/stat/IStat";
 
 export interface ICSGO {
     achievements: IAchievement[],

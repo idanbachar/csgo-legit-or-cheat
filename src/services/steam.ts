@@ -2,6 +2,7 @@ import { ICSGO } from "../components/games/ICSGO";
 import { IGame } from "../components/games/IGame";
 import { IFriend } from "../components/player/IFriend";
 import { IPlayer } from "../components/player/IPlayer";
+import { IVac } from "../components/player/IVac";
 
 const appId = 730;
 
@@ -9,6 +10,16 @@ export const getSteamId = (vanityurl: string) => new Promise<string>((resolve, r
     fetch(`/vanityurl/${vanityurl}`).then((res) => {
         res.json().then((data) => {
             return resolve(data.response.steamid);
+        })
+    }).catch((error) => {
+        reject(error);
+    })
+})
+
+export const getVac = (steamId: string) => new Promise<IVac>((resolve, reject) => {
+    fetch(`/playerBans/${steamId}}`).then((res) => {
+        res.json().then((data) => {
+            return resolve(data.players[0]);
         })
     }).catch((error) => {
         reject(error);

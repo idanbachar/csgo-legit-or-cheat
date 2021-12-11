@@ -1,6 +1,7 @@
 import { ICSGO } from "../games/ICSGO";
 import { IGame } from "../games/IGame";
 import { IFriend } from "./IFriend";
+import { IVac } from "./IVac";
 
 export interface IPlayer {
     avatar: string;
@@ -21,4 +22,5 @@ export interface IPlayer {
     games: IGame[];
     friendslist: IFriend[];
     csgo_stats: ICSGO;
+    vac: IVac;
 }

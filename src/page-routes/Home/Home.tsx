@@ -1,10 +1,9 @@
 import styles from './home.module.css';
 import SearchBox from "../../components/search-box/SearchBox";
 import { useState } from 'react';
-import { getCSGOStats, getFriends, getGames, getUser } from '../../services/steam';
+import { getCSGOStats, getFriends, getGames, getUser, getVac } from '../../services/steam';
 import { IPlayer } from '../../components/player/IPlayer';
 import Player from '../../components/player/Player';
-import CSGOStats from '../../components/csgo-stats/CSGOStats';
 
 const Home: React.FC = () => {
     const [player, setPlayer] = useState<IPlayer>();
@@ -14,9 +13,15 @@ const Home: React.FC = () => {
         const games = await getGames(user.steamid);
         const friendslist = await getFriends(user.steamid);
         const csgo_stats = await getCSGOStats(user.steamid);
+        const vac = await getVac(user.steamid);
 
-        const steamPlayer = { ...user, games, friendslist, csgo_stats }
-        setPlayer(steamPlayer);
+        setPlayer({
+            ...user,
+            games,
+            friendslist,
+            csgo_stats,
+            vac
+        });
     }
 
     return (

@@ -1,15 +1,15 @@
-import { IStat } from "../IStat";
-import styles from "./stat-data.module.css";
+import { IStat } from "./IStat";
+import styles from "./stat.module.css";
 
-const StatData = ({ stat }: { stat: IStat }) => {
+const Stat = ({ stat }: { stat: IStat }) => {
 
     return (
         <div className={styles.container}>
             <div className={styles.label}>{stat.name}</div>
             <div className={styles.label}>{stat.value}</div>
-            <div>V</div>
+            <div>SUS</div>
         </div>
     )
 }
 
-export default StatData;
+export default Stat;

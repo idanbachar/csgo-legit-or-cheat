@@ -9,6 +9,11 @@ const Player = ({ data }: { data: IPlayer }) => {
     const total_friends = data.friendslist.length;
     const account_created_year = new Date(data.timecreated * 1000).getFullYear();
     const account_age = new Date().getFullYear() - account_created_year;
+    const total_vac_bans = data.vac.NumberOfVACBans;
+    const total_game_bans = data.vac.NumberOfGameBans;
+    const isVacBanned = data.vac.VACBanned;
+
+    const vac_status = isVacBanned ? (`Banned (${total_vac_bans} VAC bans`) : "Legit";
 
     return (
         <>
@@ -26,6 +31,7 @@ const Player = ({ data }: { data: IPlayer }) => {
                     <div>Owned Games: {total_games}</div>
                     <div>Total Friends: {total_friends}</div>
                     <div>Member Since: {account_created_year} ({account_age} Years)</div>
+                    <div>VAC Status: {vac_status}</div>
                 </div>
             </div>
             <div className={styles.csgoStats}>
